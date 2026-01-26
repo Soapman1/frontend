@@ -1,0 +1,97 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+
+.center-page {
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+
+.login-btn {
+position: absolute;
+top: 20px;
+right: 20px;
+}
+
+
+.main-btn {
+padding: 20px 40px;
+font-size: 20px;
+}
+
+
+.form-page {
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.page {
+padding: 20px;
+}
+
+
+.car-list {
+list-style: none;
+padding: 0;
+}
+
+
+.car-item {
+border: 1px solid #ddd;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 6px;
+}
+
+
+.modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0,0,0,0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.modal-content {
+background: white;
+padding: 20px;
+border-radius: 8px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.search-block {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+
+.tracking-list {
+list-style: none;
+padding: 0;
+}
+
+
+.tracking-item {
+border: 1px solid #ddd;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 6px;
+}
