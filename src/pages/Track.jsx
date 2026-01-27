@@ -4,13 +4,26 @@ import axios from 'axios';
 const API_URL = 'https://car-status-backend.onrender.com';
 
 // Нормализация номера
+// Замени функцию normalizePlate на эту:
 const normalizePlate = (plate) => {
   if (!plate) return '';
+  
   return plate.toString()
     .toUpperCase()
-    .replace(/\s/g, '')
-    .replace(/-/g, '')
-    .replace(/[^A-Z0-9А-Я]/g, '');
+    .replace(/\s/g, '')           // убираем пробелы
+    .replace(/-/g, '')            // убираем дефисы
+    .replace(/[А]/g, 'A')         // русская А → латинская A
+    .replace(/[В]/g, 'B')         // русская В → латинская B
+    .replace(/[Е]/g, 'E')         // русская Е → латинская E
+    .replace(/[К]/g, 'K')         // русская К → латинская K
+    .replace(/[М]/g, 'M')         // русская М → латинская M
+    .replace(/[Н]/g, 'H')         // русская Н → латинская H
+    .replace(/[О]/g, 'O')         // русская О → латинская O
+    .replace(/[Р]/g, 'P')         // русская Р → латинская P
+    .replace(/[С]/g, 'C')         // русская С → латинская C
+    .replace(/[Т]/g, 'T')         // русская Т → латинская T
+    .replace(/[У]/g, 'Y')         // русская У → латинская Y
+    .replace(/[Х]/g, 'X');        // русская Х → латинская X
 };
 
 function Track() {
