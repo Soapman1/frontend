@@ -27,7 +27,7 @@ const handleAddCar = async () => {
 if (!brand || !plate || !waitTime) return alert('Заполни все поля');
 
 
-await addCar({ brand, plate_number: plate.toUpperCase().trim, wait_time: waitTime });
+await addCar({ brand, plate_number: plate.toUpperCase().trim(), wait_time: waitTime });
 setBrand('');
 setPlate('');
 setWaitTime('');
