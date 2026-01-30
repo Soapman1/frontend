@@ -22,19 +22,37 @@ useEffect(() => {
 fetchCars();
 }, []);
 
+const isValidPlate = (plate) => {
+  if (!plate || plate.length < 3) return false;
+  const map = {'А':'A','В':'B','Е':'E','К':'K','М':'M','Н':'H','О':'O','Р':'P','С':'C','Т':'T','У':'Y','Х':'X'};
+  const normalized = plate.toUpperCase().replace(/\s/g, '').replace(/-/g, '').replace(/[АВЕКМНОРСТУХ]/g, char => map[char] || char);
+  return /^[A-Z0-9]+$/.test(normalized);
+};
 
 const handleAddCar = async () => {
 if (!brand || !plate || !waitTime) return alert('Заполни все поля');
 
+ // ✅ Проверка на клиенте
+  if (!isValidPlate(plate)) {
+    return alert('Номер содержит недопустимые буквы. Разрешены только: A, B, E, K, M, H, O, P, C, T, Y, X (и русские аналоги)');
+  }
 
-await addCar({ brand, plate_number: plate, wait_time: waitTime });
-setBrand('');
-setPlate('');
-setWaitTime('');
-setShowModal(false);
-fetchCars();
+  try {
+    await addCar({ 
+      brand: brand.toUpperCase(), 
+      plate_number: plate.toUpperCase(), 
+      wait_time: Number(waitTime) 
+    });
+    setBrand('');
+    setPlate('');
+    setWaitTime('');
+    setShowModal(false);
+    fetchCars();
+    alert('Авто добавлено!');
+  } catch (error) {
+    alert('Ошибка: ' + (error.response?.data?.error || 'Не удалось добавить'));
+  }
 };
-
 
 const handleStatusChange = async (id, status) => {
 await updateCarStatus(id, status);
@@ -71,7 +89,7 @@ return (
 <div className="modal-content">
 <h3>Добавить авто</h3>
 <input placeholder="Марка авто" value={brand} onChange={e => setBrand(e.target.value)} />
-<input placeholder="Номер авто" value={plate} onChange={e => setPlate(e.target.value)} />
+<input placeholder="Номер авто" value={plate} onChange={e => setPlate(e.target.value.toUpperCase())} />
 <input placeholder="Время ожидания" value={waitTime} onChange={e => setWaitTime(e.target.value)} />
 <button onClick={handleAddCar}>Сохранить</button>
 <button onClick={() => setShowModal(false)}>Отмена</button>
