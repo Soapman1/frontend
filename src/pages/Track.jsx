@@ -20,7 +20,7 @@ const formatTime = (ms) => {
 
 // Получение цвета в зависимости от оставшегося времени
 const getTimeColor = (percent) => {
-  if (percent <= 0) return '#dc3545'; // Красное (время вышло)
+  if (percent <= 0) return '#a5a5a5'; // Красное (время вышло)
   if (percent < 20) return '#fd7e14'; // Оранжевое (< 20%)
   if (percent < 50) return '#ffc107'; // Желтое (< 50%)
   return '#28a745'; // Зеленое (> 50%)
@@ -224,7 +224,7 @@ function Track() {
                       marginTop: '5px',
                       fontSize: '14px'
                     }}>
-                      ⚠️ Время ожидания истекло
+                      Еще чуть-чуть
                     </div>
                   )}
                 </div>

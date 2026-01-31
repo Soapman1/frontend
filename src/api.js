@@ -35,3 +35,17 @@ export const updateCarStatus = async (id, status) => {
 const res = await axios.put(`${API_URL}/api/operator/cars/${id}/status`, { status }, { headers: { Authorization: `Bearer ${token}` } });
 return res.data;
 };
+
+export const deleteCar = async (id) => {
+  const res = await axios.delete(`${API_URL}/api/operator/cars/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data;
+};
+
+export const updateCar = async (id, carData) => {
+  const res = await axios.put(`${API_URL}/api/operator/cars/${id}`, carData, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data;
+};
